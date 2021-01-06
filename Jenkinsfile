@@ -11,6 +11,9 @@ node
  }
  stage('Run image')
  {
-  docker.run("img1:1.0")
+  docker.image("img1:1.0").withRun
+  {
+   c -> echo "Completed"
+  }
  }
 }
