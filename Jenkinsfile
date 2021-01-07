@@ -22,7 +22,7 @@ node
  }
  stage('Run image')
  {
-  docker.image("img1:1.0").withRun()
+  docker.image("img1:1.0").withRun(-w /$PWD)
   {
    c -> sh 'echo 'Completed''
   }
