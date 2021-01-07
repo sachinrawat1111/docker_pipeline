@@ -7,6 +7,10 @@ node
  }
  stage('Build image')
  {
+  environment
+  {
+   HOME = "."
+  }
   app = docker.build("img1:1.0")
  }
  stage('Test')
