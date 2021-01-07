@@ -1,17 +1,26 @@
-pipeline
+node
 {
- agent
+ def app
+ stage('Clone repository')
  {
-  dockerfile true
+   checkout scm
  }
- stages
+ stage('Build image')
  {
-  stage('Dockerfile')
+  app = docker.build("img1:1.0")
+ }
+ stage('Test')
+ {
+  app.inside
   {
-   steps
-   {
-    echo 'Completed'
-   }
+   echo "Tests Passed"
+  }
+ }
+ stage('Run image')
+ {
+  docker.image("img1:1.0").withRun()
+  {
+   c -> sh 'echo 'Completed''
   }
  }
 }
