@@ -16,5 +16,7 @@ WORKDIR usr/src/Project/app1
 RUN qmake -project
 RUN qmake app1.pro
 RUN echo "QT+=qml" >> app1.pro
+RUN echo "QT+=core" >> app1.pro
+RUN echo "CONFIG+=console" >> app1.pro
 RUN make
 CMD echo "App build completed"
